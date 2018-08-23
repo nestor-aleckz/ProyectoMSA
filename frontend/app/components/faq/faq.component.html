@@ -1,0 +1,21 @@
+<div class="list-group list-group-flush" id="accordionFAQ">
+    <div class="card list-group-item" *ngFor = "let item of items">
+      <div  id="headingFAQ">
+        <h5 class="mb-0 list-group-item list-group-item-action" (click) = "toogleFAQ(item)">
+          {{item.name}}
+        </h5>
+      </div>
+  
+      <div id= {{item.id}} class="collapse hide" aria-labelledby="headingFAQ" data-parent="#accordionFAQ">
+        <div class="card-body">
+          <div class="list-group">
+            <!-- <button type="button" class="list-group-item list-group-item-action"
+            *ngFor="let faq of item.faqs" (click)="selectFaq(faq)"> {{ faq.question }} </button> -->
+
+            <faq-detail *ngFor="let faq of item.faqs" [faqDetail]="faq"></faq-detail>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
