@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 
 declare var $: any;
 
@@ -8,24 +8,44 @@ declare var $: any;
     styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-    @Input() faqDetail: any;
+    @Input() selected: string;
+
     menuStatus = "Ocultar";
-    loggedUser = "usuario@surveybot.com"
+    loggedUser = "usuario@surveybot.com";
+    thenBlock: TemplateRef <any> | null = null;
+    show: boolean = true;
     constructor() { }
 
-    ngOnInit() {
+    @ViewChild('surveyList')
+    surveyList: TemplateRef<any> | null = null;
+    @ViewChild('benefitList')
+    benefitList: TemplateRef<any> | null = null;
+
+    switchPrimary(element) {
+        console.log("Selected ",element.target);
+        switch (element.target.id) {
+            case 'surveyList':
+            this.thenBlock = this.surveyList;
+            break
+            case 'benefitList' :
+            this.thenBlock = this.benefitList;
+            break
+        }
+
     }
+
+    ngOnInit() {  }
 
     collapseMenu() {
         let menu = $('#sidebar')
         menu.toggleClass('active');
-        if(menu.attr('class') != "active"){
+        if (menu.attr('class') != "active") {
             this.menuStatus = "Ocultar"
-        }else {
+        } else {
             this.menuStatus = "Mostrar"
-        } 
+        }
 
-       
+
 
     }
 
