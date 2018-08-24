@@ -9,17 +9,20 @@ export class QuestionsController {
 
     @Get('/api/questions')
     getQuestions(@Res() res) {
-       /* this.questionsService.getQuestions().pipe().toPromise().then(response => {
-            //console.log(response.data);
-            res.end(JSON.stringify(response.data));
-          })*/
-          res.end(JSON.stringify(this.questionsService.getQuestions()));
+       this.questionsService.getQuestions().then(response => {
+            console.log(response);
+            res.end(JSON.stringify(response));
+          })
+       //   res.end(JSON.stringify(this.questionsService.getQuestions()));
     }
 
     @Post('/api/questions')
     postQuestion(@Body() newQuestion, @Res() res){
         this.questionsService.createQuestion(newQuestion).then(()=>{
-            res.end(JSON.stringify(this.questionsService.getQuestions()));   
+            this.questionsService.getQuestions().then(response => {
+                console.log(response);
+                res.end(JSON.stringify(response));
+              });   
         })
     }
 

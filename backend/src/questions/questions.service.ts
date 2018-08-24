@@ -13,10 +13,21 @@ export class QuestionsService {
     } 
 
     getQuestions() {
-        return [{label:"Pregunta 1?", idQuestion:2, idPoll:1, questionIndex:1}
+    let  query =   this.ds.createQuery(this.ENTITY_NAME)
+    .order('questionIndex', { descending: false });
+
+  return this.ds.runQuery(query)
+    .then((results) => {
+      const entities = results[0];
+        entities.forEach(element => {
+            element.id = element[this.ds.KEY].id;
+        });
+      return entities;
+    });
+       /* return [{label:"Pregunta 1?", idQuestion:2, idPoll:1, questionIndex:1}
         ,{label:"Pregunta 2?", idQuestion:3, idPoll:1, questionIndex:2}
         ,{label:"Pregunta 3?", idQuestion:4, idPoll:1, questionIndex:3}
-        ,{label:"Pregunta 4?", idQuestion:5, idPoll:1, questionIndex:4}];
+        ,{label:"Pregunta 4?", idQuestion:5, idPoll:1, questionIndex:4}];*/
     }
 
     createQuestion(question){
