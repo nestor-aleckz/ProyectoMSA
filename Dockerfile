@@ -1,8 +1,8 @@
 FROM node:8
 
-WORKDIR /novum
+WORKDIR /chatbot-ayd
 
-ADD . /novum
+ADD . /chatbot-ayd
 
 RUN npm install pm2 -g
 
