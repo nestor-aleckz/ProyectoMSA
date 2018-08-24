@@ -11,13 +11,16 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { FaqService } from './services/faq.service';
 import { MainComponent } from './components/main/main.component';
 
+import {QuestionsComponent}from './components/questions/questions.component'
+
 @NgModule({
   declarations: [
     AppComponent,
     FaqComponent,
     FaqDetailComponent,
     NavbarComponent,
-    MainComponent
+    MainComponent,
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,
