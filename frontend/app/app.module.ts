@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 
 import { FaqService } from './services/faq.service';
 import { MainComponent } from './components/main/main.component';
+import { SurveyComponent } from './components/survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MainComponent } from './components/main/main.component';
     FaqComponent,
     FaqDetailComponent,
     NavbarComponent,
-    MainComponent
+    MainComponent,
+    SurveyComponent
   ],
   imports: [
     BrowserModule,
