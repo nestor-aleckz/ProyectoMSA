@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
     loggedUser = "usuario@surveybot.com";
     thenBlock: TemplateRef <any> | null = null;
     show: boolean = true;
+    benefits:any[] = [];
     constructor() { }
 
     @ViewChild('surveyList')
@@ -22,7 +23,7 @@ export class MainComponent implements OnInit {
     benefitList: TemplateRef<any> | null = null;
 
     switchPrimary(element) {
-        console.log("Selected ",element.target);
+        
         switch (element.target.id) {
             case 'surveyList':
             this.thenBlock = this.surveyList;
@@ -34,7 +35,13 @@ export class MainComponent implements OnInit {
 
     }
 
-    ngOnInit() {  }
+    ngOnInit() { 
+
+        this.benefits = [{label:"Beneficio 1?", idQuestion:2, idPoll:1, questionIndex:1}
+        ,{label:"Beneficio 2?", idQuestion:3, idPoll:1, questionIndex:2}
+        ,{label:"Beneficio 3?", idQuestion:4, idPoll:1, questionIndex:3}
+        ,{label:"Beneficio 4?", idQuestion:5, idPoll:1, questionIndex:4}]
+     }
 
     collapseMenu() {
         let menu = $('#sidebar')

@@ -12,6 +12,7 @@ import { FaqService } from './services/faq.service';
 import { MainComponent } from './components/main/main.component';
 
 import {QuestionsComponent}from './components/questions/questions.component'
+import { BenefitComponent } from './components/benefits/benefit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {QuestionsComponent}from './components/questions/questions.component'
     FaqDetailComponent,
     NavbarComponent,
     MainComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    BenefitComponent
   ],
   imports: [
     BrowserModule,

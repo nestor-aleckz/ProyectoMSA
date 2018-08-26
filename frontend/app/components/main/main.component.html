@@ -23,8 +23,8 @@
             </li>
 
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Beneficios</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
+                <a data-toggle="collapse" aria-expanded="false"  id="benefitList" (click) ='switchPrimary($event)'>Beneficios</a>
+                <!-- <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
                         <a id="benefitList" (click) ='switchPrimary($event)'>Ver Beneficios</a>
                     </li>
@@ -34,7 +34,7 @@
                     <li>
                         <a href="/home">Asignar Beneficios</a>
                     </li>
-                </ul>
+                </ul> -->
             </li>
             <li>
                 <a href="/home">Grupo 2 AyD 1</a>
@@ -73,8 +73,8 @@
 
         <div id="main">
             <div *ngIf="show; then thenBlock; else elseBlock">this is ignored</div>
-            <ng-template #surveyList> Lista de Facturas acá... </ng-template>
-            <ng-template #benefitList>  <app-faq></app-faq> </ng-template>
+            <ng-template #surveyList> <questions></questions></ng-template>
+            <ng-template #benefitList>  <benefit-list></benefit-list> </ng-template>
             <ng-template #elseBlock>Default Selection aca</ng-template>
 
         </div>

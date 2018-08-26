@@ -1,0 +1,52 @@
+<p>
+    <button class="btn" (click)="crear()">Crear</button>
+</p>
+<div class="list-group list-group-flush" id="accordionBenefit">
+
+    <div class="mb-0 list-group-item" *ngFor="let item of items">
+        <!-- <div > -->
+        <h5 class="mb-0 list-group-item-action benefit" (click)="toogleBenefit(item)" id="headingBenefit">
+            {{item.name}}
+        </h5>
+        <!-- </div> -->
+
+        <div id= {{item.id}} class="collapse hide" aria-labelledby="headingBenefit" data-parent="#accordionBenefit">
+            <div class="card-body">
+                <div class="list-group">
+                    {{ item.description }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="benefitsFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Crear Beneficio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder=" ">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Desctipción</label>
+                        <input type="text" class="form-control" id="description" placeholder=" ">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='saveBenefit($event)'>Guardar Beneficio</button>
+            </div>
+        </div>
+    </div>
+</div>
