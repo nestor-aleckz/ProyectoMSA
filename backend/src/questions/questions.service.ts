@@ -13,9 +13,8 @@ export class QuestionsService {
     } 
 
     getQuestion(idQuestion){
-        console.log("before: ",idQuestion);
+  
         idQuestion = parseInt(idQuestion);
-        console.log("After: ",idQuestion);
         let key = this.ds.key([this.ENTITY_NAME,idQuestion]);
         return this.ds.get(key).then(
             (entity) =>{
@@ -47,10 +46,7 @@ export class QuestionsService {
         });
       return entities;
     });
-       /* return [{label:"Pregunta 1?", idQuestion:2, idPoll:1, questionIndex:1}
-        ,{label:"Pregunta 2?", idQuestion:3, idPoll:1, questionIndex:2}
-        ,{label:"Pregunta 3?", idQuestion:4, idPoll:1, questionIndex:3}
-        ,{label:"Pregunta 4?", idQuestion:5, idPoll:1, questionIndex:4}];*/
+
     }
 
     createQuestion(question){
@@ -59,6 +55,20 @@ export class QuestionsService {
                , data: question
            }
        );
+    }
+    
+
+    deleteQuestion(idQuestion){
+        console.log("before: ",idQuestion);
+        idQuestion = parseInt(idQuestion);
+        console.log("After: ",idQuestion);
+        let key = this.ds.key([this.ENTITY_NAME,idQuestion]);
+        return this.ds.delete(key).then(
+            (entity) =>{
+                    console.log("entity:" , entity);
+                return entity;
+            }
+        )
     }
 
 }

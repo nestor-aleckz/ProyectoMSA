@@ -1,4 +1,4 @@
-import { Controller,Get,Post, Body , Res, Param, HttpException, HttpStatus} from '@nestjs/common';
+import { Controller,Get,Post, Body , Res, Param, HttpException, HttpStatus, Delete} from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 
 @Controller()
@@ -40,6 +40,23 @@ export class QuestionsController {
                 res.end(JSON.stringify(response));
               });   
         })
+    }
+
+    @Delete('/api/question/:idQuestion')
+    removeQuestion(@Param('idQuestion') idQ,  @Res() res){
+      
+            this.questionsService.deleteQuestion(idQ).then(
+               (response) => {
+                    
+                    if( response === null  || response === undefined ){
+                        res.status(HttpStatus.NOT_FOUND).send();
+                        res.end();
+                    }else{
+                        res.end(); 
+                    }
+                }
+            );
+
     }
 
 
