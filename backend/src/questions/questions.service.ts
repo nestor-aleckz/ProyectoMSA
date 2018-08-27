@@ -12,15 +12,38 @@ export class QuestionsService {
       //  this.ds = DATASTORE.Datastore();
     } 
 
-    getQuestions() {
+    getQuestion(idQuestion){
+        console.log("before: ",idQuestion);
+        idQuestion = parseInt(idQuestion);
+        console.log("After: ",idQuestion);
+        let key = this.ds.key([this.ENTITY_NAME,idQuestion]);
+        return this.ds.get(key).then(
+            (entity) =>{
+                    console.log("entity:" , entity);
+                  if(entity[0] != null){
+                    entity = entity[0];
+                    entity.id = idQuestion;
+                  }
+                  else{
+                      entity = null ; 
+                  }
+                return entity;
+            }
+        )
+    }
+    getQuestions(idPoll) {
+    
+    idPoll= new Number(idPoll);
+
     let  query =   this.ds.createQuery(this.ENTITY_NAME)
+    .filter('idPoll','=',idPoll)
     .order('questionIndex', { descending: false });
 
   return this.ds.runQuery(query)
     .then((results) => {
       const entities = results[0];
         entities.forEach(element => {
-            element.id = element[this.ds.KEY].id;
+            element.id = new Number(element[this.ds.KEY].id);
         });
       return entities;
     });

@@ -1,4 +1,4 @@
-import { Controller,Get,Post, Body , Res} from '@nestjs/common';
+import { Controller,Get,Post, Body , Res, Param, HttpException, HttpStatus} from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 
 @Controller()
@@ -6,10 +6,24 @@ export class QuestionsController {
     constructor (private readonly questionsService:QuestionsService){
  
     }
-
-    @Get('/api/questions')
-    getQuestions(@Res() res) {
-       this.questionsService.getQuestions().then(response => {
+    @Get('/api/question/:idQuestion')
+    getQuestion(@Param('idQuestion') idQ, @Res() res){
+            this.questionsService.getQuestion(idQ).then(
+               (response) => {
+                    
+                    if( response === null  || response === undefined ){
+                        res.status(HttpStatus.NOT_FOUND).send();
+                        res.end();
+                    }else{
+                        
+                        res.end(JSON.stringify(response)); 
+                    }
+                }
+            );
+    }
+    @Get('/api/questions/:idPoll')
+    getQuestions(@Param('idPoll') idPoll ,  @Res() res) {
+       this.questionsService.getQuestions(idPoll).then(response => {
             console.log(response);
             res.end(JSON.stringify(response));
           })
@@ -18,8 +32,10 @@ export class QuestionsController {
 
     @Post('/api/questions')
     postQuestion(@Body() newQuestion, @Res() res){
-        this.questionsService.createQuestion(newQuestion).then(()=>{
-            this.questionsService.getQuestions().then(response => {
+        this.questionsService.createQuestion(newQuestion).then((e)=>{
+            let newId = Number(e[0]['mutationResults'][0].key.path.id);
+            console.log("number: ", newId);
+            this.questionsService.getQuestions(newQuestion.idPoll).then(response => {
                 console.log(response);
                 res.end(JSON.stringify(response));
               });   
