@@ -18,7 +18,6 @@ export class QuestionsService {
         let key = this.ds.key([this.ENTITY_NAME,idQuestion]);
         return this.ds.get(key).then(
             (entity) =>{
-                    console.log("entity:" , entity);
                   if(entity[0] != null){
                     entity = entity[0];
                     entity.id = idQuestion;
@@ -56,6 +55,17 @@ export class QuestionsService {
            }
        );
     }
+    updateQuestion(idQuestion,question){
+        if(question.id){
+            delete question['id'];
+        }
+        idQuestion = Number(idQuestion);
+        return this.ds.update({
+                  key: this.ds.key([this.ENTITY_NAME, idQuestion])
+                  , data: question
+              }
+          );
+       }
     
 
     deleteQuestion(idQuestion){
@@ -65,7 +75,6 @@ export class QuestionsService {
         let key = this.ds.key([this.ENTITY_NAME,idQuestion]);
         return this.ds.delete(key).then(
             (entity) =>{
-                    console.log("entity:" , entity);
                 return entity;
             }
         )

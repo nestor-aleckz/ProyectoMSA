@@ -1,4 +1,4 @@
-import { Controller,Get,Post, Body , Res, Param, HttpException, HttpStatus, Delete} from '@nestjs/common';
+import { Controller,Get,Post, Body , Res, Param, Put ,HttpException, HttpStatus, Delete} from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 
 @Controller()
@@ -39,10 +39,30 @@ export class QuestionsController {
                 console.log(response);
                 res.end(JSON.stringify(response));
               });   
+        }).catch(error => {
+            console.log(error);
+            res.status(HttpStatus.NOT_FOUND).send();
+            res.end();
         })
     }
 
-    @Delete('/api/question/:idQuestion')
+    @Put('/api/questions/:idQuestion')
+    puttQuestion(@Body() newQuestion, @Param('idQuestion') idQuestion, @Res() res){
+        this.questionsService.updateQuestion(idQuestion , newQuestion).then((e)=>{
+             console.log(e[0]['mutationResults']);
+            //let updated = Number(e[0]['mutationResults'][0].key.path.id);
+            //console.log("number: ", updated);
+            this.questionsService.getQuestions(newQuestion.idPoll).then(response => {
+                res.end(JSON.stringify(response));
+              });   
+        }).catch(error => {
+            console.log(error);
+            res.status(HttpStatus.NOT_FOUND).send();
+            res.end();
+        })
+    }
+
+    @Delete('/api/questions/:idQuestion')
     removeQuestion(@Param('idQuestion') idQ,  @Res() res){
       
             this.questionsService.deleteQuestion(idQ).then(

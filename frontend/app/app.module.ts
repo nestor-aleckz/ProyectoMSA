@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { FaqService } from './services/faq.service';
 import { MainComponent } from './components/main/main.component';
 
+import { QuestionService } from './services/questions.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import { MainComponent } from './components/main/main.component';
   ],
   providers: [
     FaqService
+    , QuestionService
   ],
   bootstrap: [AppComponent]
 })
