@@ -11,10 +11,10 @@
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Encuesta</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a id="surveyList" (click) ='switchPrimary($event)'>Ver Encuestas</a>
+                        <a id="pollList" (click) ='switchPrimary($event)'>Ver Encuestas</a>
                     </li>
                     <li>
-                        <a href="/home">Crear Encuesta</a>
+                        <a id="questionList" (click) ='switchPrimary($event)'>Preguntas</a>
                     </li>
                     <li>
                         <a href="/home">Editar Encuesta</a>
@@ -73,8 +73,9 @@
 
         <div id="main">
             <div *ngIf="show; then thenBlock; else elseBlock">this is ignored</div>
-            <ng-template #surveyList> <questions></questions></ng-template>
+            <ng-template #pollList> <survey-component></survey-component></ng-template>
             <ng-template #benefitList>  <benefit-list></benefit-list> </ng-template>
+            <ng-template #questionList>  <questions></questions> </ng-template>
             <ng-template #elseBlock>Default Selection aca</ng-template>
 
         </div>

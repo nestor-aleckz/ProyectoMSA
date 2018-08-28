@@ -17,19 +17,24 @@ export class MainComponent implements OnInit {
     benefits:any[] = [];
     constructor() { }
 
-    @ViewChild('surveyList')
-    surveyList: TemplateRef<any> | null = null;
+    @ViewChild('pollList')
+    pollList: TemplateRef<any> | null = null;
     @ViewChild('benefitList')
     benefitList: TemplateRef<any> | null = null;
+    @ViewChild('questionList')
+    questionList: TemplateRef<any> | null = null;
 
     switchPrimary(element) {
         
         switch (element.target.id) {
-            case 'surveyList':
-            this.thenBlock = this.surveyList;
+            case 'pollList':
+            this.thenBlock = this.pollList;
             break
             case 'benefitList' :
             this.thenBlock = this.benefitList;
+            break
+            case 'questionList' :
+            this.thenBlock = this.questionList;
             break
         }
 
