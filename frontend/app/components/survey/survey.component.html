@@ -1,0 +1,86 @@
+<p> 
+  <button class="btn" (click)="edit()">Crear nueva encuesta</button>
+</p>
+<div class="card " *ngFor="let i of surveys">
+  <div class="card-body ">
+      <h5 class="mb-0 list-group-item-action poll" >{{ i.surveyIndex + ".- " + i.nameSurvey + " ( " + i.providerSurvey + ") " }}</h5>
+      <div >{{ "    " + i.benefitSurvey}} </div>
+      <span class="poll">
+          <button class="btn " (click)="see()">Ver Detalles</button>
+          <button class="btn btn-secondary" (click)="edit()">Editar</button>
+      </span>
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="surveysSeeFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Detalle Encuesta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <strong><label for="lblNombre">Nombre</label><br/></strong>
+            <label for="lblProveedor">- Proveedor</label><br/>
+            <label for="lblBeneficio">- Beneficio</label><br/>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Edit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="surveysEditFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Editar Encuesta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+                <form>
+                    <div class="form-group">
+                      <label for="lblnameSurvey">Nombre:</label>
+                      <input type="text" class="form-control" id="txtnameSurvey" placeholder=" ">
+                    </div>
+                    <div class="form-group">
+                      <label for="lblindexSurvey">Beneficio</label>
+                      <input type="number" class="form-control" id="txtindexSurvey" placeholder=" ">
+                    </div>
+                    <div class="form-group">
+                        <label for="lblproviderSuvery">Proveedor</label>
+                        <input type="number" class="form-control" id="txtproviderSurvey" placeholder=" ">
+                      </div>
+                      <div class="form-group">
+                        <button type="button"  data-dismiss="modal">Asociar Preguntas</button>
+                      </div>
+                  </form>
+            </div>
+          </form>
+        </div>+
+
+  
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
