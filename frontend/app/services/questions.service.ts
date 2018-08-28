@@ -29,7 +29,7 @@ export class QuestionService {
     let options : RequestOptionsArgs = {headers : new Headers()};
     options.headers.append("Content-Type", "application/json;charset=UTF-8");
     let requestUrl = API_QUESTIONS_URL + '/' + idQuestion ;
-    return this.http.post(requestUrl ,question,options).pipe().toPromise().then(res => res.json()).catch(res=>null);
+    return this.http.put(requestUrl ,question,options).pipe().toPromise().then(res => res.json()).catch(res=>null);
  }
 
  deleteQuestion(idQuestion){

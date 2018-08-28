@@ -32,13 +32,16 @@ export class FaqComponent implements OnInit {
     this.questionService.getQuestionById(5631986051842048).then(res =>{
       console.log('Pregunta: ',res);
     });
-    let newQ =  {"questionIndex":7,"label":"Pregunta 7?","idPoll":2}
-    this.questionService.createQuestion(newQ).then(res => {
+    let newQ =  {"questionIndex":10,"label":"Pregunta 10? updated","idPoll":2}
+    /*this.questionService.createQuestion(newQ).then(res => {
       console.log("after create", res);
-    });
+    });*/
    this.questionService.deleteQuestion(5707702298738688).then(()=>{
       console.log("success");
-   })   
+   })  ;
+   this.questionService.updateQuestion(5635703144710144,newQ).then((response)=>{
+     console.log("update: ", response);
+   });
   }
 
   toogleFAQ(item) {
